@@ -1,8 +1,10 @@
 
 package manish.dsa.arrays.twopointers.LC167_TwoSumII;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TwoSumIITest {
     @Test
