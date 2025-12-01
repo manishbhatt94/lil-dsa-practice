@@ -16,37 +16,43 @@ public class ThreeSumToZero {
 
 		Arrays.sort(nums);
 
-		for (int k = 0; k < (N - 2); k++) {
-			if (nums[k] > 0) {
+		for (int i = 0; i < (N - 2); i++) {
+			if (nums[i] > 0) {
 				// when 1st element of triplet is positive, in sorted array,
 				// then further triplets summing to zero can't be found.
 				break;
 			}
 
-			if (k > 0 && nums[k] == nums[k - 1]) {
+			if (i > 0 && nums[i] == nums[i - 1]) {
 				continue;
 			}
 
-			int target = -1 * nums[k];
+			int target = -1 * nums[i];
 
-			int i = k + 1;
-			int j = N - 1;
-			while (i < j) {
-				int pairSum = nums[i] + nums[j];
+			int left = i + 1;
+			int right = N - 1;
+			while (left < right) {
+				if (nums[left] > target) {
+					// first element itself, of pair, is greater than 'target'
+					// so pair can't be found since any nums[left] (right > left)
+					// will be greater only & so pairSum would exceed target
+					break;
+				}
+				int pairSum = nums[left] + nums[right];
 				if (pairSum < target) {
-					i = i + 1;
+					left = left + 1;
 				} else if (pairSum > target) {
-					j = j - 1;
+					right = right - 1;
 				} else {
-					List<Integer> triplet = List.of(nums[k], nums[i], nums[j]);
+					List<Integer> triplet = List.of(nums[i], nums[left], nums[right]);
 					result.add(triplet);
-					i = i + 1;
-					j = j - 1;
-					while (i < j && nums[i] == nums[i - 1]) {
-						i = i + 1;
+					left = left + 1;
+					right = right - 1;
+					while (left < right && nums[left] == nums[left - 1]) {
+						left = left + 1;
 					}
-					while (i < j && nums[j] == nums[j + 1]) {
-						j = j - 1;
+					while (left < right && nums[right] == nums[right + 1]) {
+						right = right - 1;
 					}
 				}
 			}
