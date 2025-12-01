@@ -143,6 +143,28 @@ class ThreeSumToZeroTest {
 					List.of(-2, -1, 3), List.of(-2, 0, 2), List.of(-2, 1, 1), List.of(-1, 0, 1));
 			assertThat(actual).isEqualTo(expected);
 		}
+
+		@Test
+		void testThree() {
+			// sorted input -> { -2, -1, -1, 0, 1, 1, 2, 3, 3 }
+			input = new int[] { 3, 0, -1, -2, 1, 2, -1, 3, 1 };
+			actual = obj.threeSum(input);
+			/**
+			 * @formatter:off
+			 * Expected output:
+			 * List.of(
+			 * 		List.of(-2, -1, 3),
+			 *		List.of(-2, 0, 2),
+			 *		List.of(-2, 1, 1),
+			 *		List.of(-1, -1, 2),
+			 *		List.of(-1, 0, 1)
+			 * );
+			 * @formatter:on
+			 */
+			expected = List.of(List.of(-2, -1, 3), List.of(-2, 0, 2), List.of(-2, 1, 1), List.of(-1, -1, 2),
+					List.of(-1, 0, 1));
+			assertThat(actual).isEqualTo(expected);
+		}
 	}
 
 }
