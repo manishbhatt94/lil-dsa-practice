@@ -46,7 +46,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 	}
 
 	private static ISolutionApproach[] approachProvider() {
-		return new ISolutionApproach[] { new LC80_Approach_1() };
+		return new ISolutionApproach[] { new LC80_Approach_1(), new LC80_Approach_2() };
 	}
 
 }
