@@ -5,6 +5,11 @@ public class LC80_Approach_1 implements ISolutionApproach_LC80 {
 	@Override
 	public int removeDuplicates(int[] nums) {
 		int N = nums.length;
+
+		if (N < 1) {
+			return 0;
+		}
+
 		int i = 0;
 		int j = 1;
 
