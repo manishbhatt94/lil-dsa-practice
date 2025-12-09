@@ -17,6 +17,9 @@ class RemoveDuplicatesFromSortedArrayIITest {
 		// work on a copy of input array - since the algorithm modifies the input array
 		int[] arrCopy = Arrays.copyOf(tc.input.nums, tc.input.nums.length);
 		int actualK = approach.removeDuplicates(arrCopy);
+		tc.log();
+		ISolutionApproach_LC80.logActualOutput(actualK, arrCopy);
+		System.out.println();
 
 		assertThat(tc.output.expectedArr).hasSize(tc.output.expectedK);
 		assertThat(actualK).isEqualTo(tc.output.expectedK);
@@ -24,21 +27,32 @@ class RemoveDuplicatesFromSortedArrayIITest {
 	}
 
 	// --- Inner static classes for test data ---
-	static class TestCaseInput {
+	private static class TestCaseInput {
 		final int[] nums;
 
 		TestCaseInput(int[] nums) {
 			this.nums = nums;
 		}
+
+		public void log() {
+			System.out.println("Logging Test Case Input:");
+			System.out.println("Input: nums = " + Arrays.toString(nums));
+		}
 	}
 
-	static class TestCaseOutput {
+	private static class TestCaseOutput {
 		final int expectedK;
 		final int[] expectedArr;
 
 		TestCaseOutput(int expectedK, int[] expectedArr) {
 			this.expectedK = expectedK;
 			this.expectedArr = expectedArr;
+		}
+
+		void log() {
+			System.out.println("Logging Test Case Expected Output:");
+			System.out.println("Expected Output: expectedK = " + expectedK);
+			System.out.println("Expected Output: expectedArr = " + Arrays.toString(expectedArr));
 		}
 	}
 
@@ -50,6 +64,13 @@ class RemoveDuplicatesFromSortedArrayIITest {
 			this.input = input;
 			this.output = output;
 		}
+
+		void log() {
+			input.log();
+			System.out.println("---------------------------------------\n");
+			output.log();
+			System.out.println("---------------------------------------\n");
+		}
 	}
 
 	// --- Provider combining approaches × test cases ---
@@ -58,6 +79,30 @@ class RemoveDuplicatesFromSortedArrayIITest {
 
 		// @formatter:off
 		TestCase[] cases = {
+				new TestCase(
+						new TestCaseInput(new int[] {}),
+						new TestCaseOutput(0, new int[] {})
+				),
+				new TestCase(
+						new TestCaseInput(new int[] { 7 }),
+						new TestCaseOutput(1, new int[] { 7 })
+				),
+				new TestCase(
+						new TestCaseInput(new int[] { 1, 2 }),
+						new TestCaseOutput(2, new int[] { 1, 2 })
+				),
+				new TestCase(
+						new TestCaseInput(new int[] { 1, 1 }),
+						new TestCaseOutput(2, new int[] { 1, 1 })
+				),
+				new TestCase(
+						new TestCaseInput(new int[] { -7, -4, -1 }),
+						new TestCaseOutput(3, new int[] { -7, -4, -1 })
+				),
+				new TestCase(
+						new TestCaseInput(new int[] { 1, 1, 2 }),
+						new TestCaseOutput(3, new int[] { 1, 1, 2 })
+				),
 				new TestCase(
 						new TestCaseInput(new int[] { 1, 1, 1, 2, 2, 3 }),
 						new TestCaseOutput(5, new int[] { 1, 1, 2, 2, 3 })
