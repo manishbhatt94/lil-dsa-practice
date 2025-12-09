@@ -1,18 +1,18 @@
 package manish.dsa.arrays.twopointers.LC80_RemoveDuplicatesFromSortedArrayII;
 
-interface ISolutionApproach {
+interface ISolutionApproach_LC80 {
 	int removeDuplicates(int[] nums);
 }
 
 public class RemoveDuplicatesFromSortedArrayII {
 
-	private ISolutionApproach approach;
+	private ISolutionApproach_LC80 approach;
 
 	public RemoveDuplicatesFromSortedArrayII() {
 		super();
 	}
 
-	public RemoveDuplicatesFromSortedArrayII(ISolutionApproach approach) {
+	public RemoveDuplicatesFromSortedArrayII(ISolutionApproach_LC80 approach) {
 		this.approach = approach;
 	}
 

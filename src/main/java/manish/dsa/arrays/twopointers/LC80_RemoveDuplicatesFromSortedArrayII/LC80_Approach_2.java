@@ -1,6 +1,6 @@
 package manish.dsa.arrays.twopointers.LC80_RemoveDuplicatesFromSortedArrayII;
 
-public class LC80_Approach_2 implements ISolutionApproach {
+public class LC80_Approach_2 implements ISolutionApproach_LC80 {
 
 	@Override
 	public int removeDuplicates(int[] nums) {

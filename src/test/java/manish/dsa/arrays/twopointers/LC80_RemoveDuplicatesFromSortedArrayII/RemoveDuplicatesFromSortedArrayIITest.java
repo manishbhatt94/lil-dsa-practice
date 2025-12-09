@@ -11,7 +11,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 
 	@ParameterizedTest
 	@MethodSource("approachProvider")
-	void testOne(ISolutionApproach approach) {
+	void testOne(ISolutionApproach_LC80 approach) {
 		int[] arr = { 1, 1, 1, 2, 2, 3 };
 		int actualK = approach.removeDuplicates(arr);
 		int expectedK = 5;
@@ -23,7 +23,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 
 	@ParameterizedTest
 	@MethodSource("approachProvider")
-	void testTwo(ISolutionApproach approach) {
+	void testTwo(ISolutionApproach_LC80 approach) {
 		int[] arr = { 0, 0, 1, 1, 1, 1, 2, 3, 3 };
 		int actualK = approach.removeDuplicates(arr);
 		int expectedK = 7;
@@ -35,7 +35,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 
 	@ParameterizedTest
 	@MethodSource("approachProvider")
-	void testThree(ISolutionApproach approach) {
+	void testThree(ISolutionApproach_LC80 approach) {
 		int[] arr = { 1, 1, 1, 1, 2, 3, 3, 4, 4, 4, 5, 6, 6, 6, 6, 7, 7, 8 };
 		int actualK = approach.removeDuplicates(arr);
 		int expectedK = 13;
@@ -45,8 +45,8 @@ class RemoveDuplicatesFromSortedArrayIITest {
 		assertThat(Arrays.copyOf(arr, actualK)).isEqualTo(expUpdatedArr);
 	}
 
-	private static ISolutionApproach[] approachProvider() {
-		return new ISolutionApproach[] { new LC80_Approach_1(), new LC80_Approach_2() };
+	private static ISolutionApproach_LC80[] approachProvider() {
+		return new ISolutionApproach_LC80[] { new LC80_Approach_1(), new LC80_Approach_2() };
 	}
 
 }
