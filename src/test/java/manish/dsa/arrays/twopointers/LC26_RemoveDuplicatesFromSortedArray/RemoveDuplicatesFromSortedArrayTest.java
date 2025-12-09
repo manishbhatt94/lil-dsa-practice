@@ -1,4 +1,4 @@
-package manish.dsa.arrays.twopointers.LC80_RemoveDuplicatesFromSortedArrayII;
+package manish.dsa.arrays.twopointers.LC26_RemoveDuplicatesFromSortedArray;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,17 +9,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class RemoveDuplicatesFromSortedArrayIITest {
+class RemoveDuplicatesFromSortedArrayTest {
 
 	@ParameterizedTest
 	@MethodSource("approachAndTestCases")
-	void testRemoveDuplicates(ISolutionApproach_LC80 approach, TestCase tc) {
+	void testRemoveDuplicates(ISolutionApproach_LC26 approach, TestCase tc) {
 		// work on a copy of input array - since the algorithm modifies the input array
 		int[] arrCopy = Arrays.copyOf(tc.input.nums, tc.input.nums.length);
 		int actualK = approach.removeDuplicates(arrCopy);
 
 		tc.log();
-		ISolutionApproach_LC80.logActualOutput(actualK, arrCopy);
+		ISolutionApproach_LC26.logActualOutput(actualK, arrCopy);
 		System.out.println();
 
 		assertThat(tc.output.expectedArr).hasSize(tc.output.expectedK);
@@ -28,7 +28,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 	}
 
 	// --- Inner static classes for test data ---
-	private static class TestCaseInput {
+	static class TestCaseInput {
 		final int[] nums;
 
 		TestCaseInput(int[] nums) {
@@ -41,7 +41,7 @@ class RemoveDuplicatesFromSortedArrayIITest {
 		}
 	}
 
-	private static class TestCaseOutput {
+	static class TestCaseOutput {
 		final int expectedK;
 		final int[] expectedArr;
 
@@ -76,48 +76,60 @@ class RemoveDuplicatesFromSortedArrayIITest {
 
 	// --- Provider combining approaches × test cases ---
 	private static Stream<Arguments> approachAndTestCases() {
-		ISolutionApproach_LC80[] approaches = { new LC80_Approach_1(), new LC80_Approach_2() };
+		ISolutionApproach_LC26[] approaches = { new LC26_Approach_1() };
 
 		// @formatter:off
-		TestCase[] cases = {
-				new TestCase(
-						new TestCaseInput(new int[] {}),
-						new TestCaseOutput(0, new int[] {})
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 7 }),
-						new TestCaseOutput(1, new int[] { 7 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 1, 2 }),
-						new TestCaseOutput(2, new int[] { 1, 2 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 1, 1 }),
-						new TestCaseOutput(2, new int[] { 1, 1 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { -7, -4, -1 }),
-						new TestCaseOutput(3, new int[] { -7, -4, -1 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 1, 1, 2 }),
-						new TestCaseOutput(3, new int[] { 1, 1, 2 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 1, 1, 1, 2, 2, 3 }),
-						new TestCaseOutput(5, new int[] { 1, 1, 2, 2, 3 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 0, 0, 1, 1, 1, 1, 2, 3, 3 }),
-						new TestCaseOutput(7, new int[] { 0, 0, 1, 1, 2, 3, 3 })
-				),
-				new TestCase(
-						new TestCaseInput(new int[] { 1, 1, 1, 1, 2, 3, 3, 4, 4, 4, 5, 6, 6, 6, 6, 7, 7, 8 }),
-						new TestCaseOutput(13, new int[] { 1, 1, 2, 3, 3, 4, 4, 5, 6, 6, 7, 7, 8 })
-				),
-		};
-		// @formatter:on
+			TestCase[] cases = {
+					new TestCase(
+							new TestCaseInput(new int[] {}),
+							new TestCaseOutput(0, new int[] {})
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 7 }),
+							new TestCaseOutput(1, new int[] { 7 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 2 }),
+							new TestCaseOutput(2, new int[] { 1, 2 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1 }),
+							new TestCaseOutput(1, new int[] { 1 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { -7, -4, -1 }),
+							new TestCaseOutput(3, new int[] { -7, -4, -1 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1, 2 }),
+							new TestCaseOutput(2, new int[] { 1, 2 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1, 2, 3 }),
+							new TestCaseOutput(3, new int[] { 1, 2, 3 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1, 2, 2, 3 }),
+							new TestCaseOutput(3, new int[] { 1, 2, 3 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1, 1, 2, 2, 3 }),
+							new TestCaseOutput(3, new int[] { 1, 2, 3 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 0, 0, 1, 1, 1, 1, 2, 3, 3 }),
+							new TestCaseOutput(4, new int[] { 0, 1, 2, 3 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }),
+							new TestCaseOutput(5, new int[] { 0, 1, 2, 3, 4 })
+					),
+					new TestCase(
+							new TestCaseInput(new int[] { 1, 1, 1, 1, 2, 3, 3, 4, 4, 4, 5, 6, 6, 6, 6, 7, 7, 8 }),
+							new TestCaseOutput(8, new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
+					),
+			};
+			// @formatter:on
 
 		// Cartesian product: each approach × each test case
 		return Arrays.stream(approaches)
