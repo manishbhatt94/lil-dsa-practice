@@ -13,8 +13,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class ThreeSumSmallerTest {
 
-	<T extends SolutionApproach & Debuggable> void doTestWithApproach(T approach,
-			TestCase tc) {
+	<T extends SolutionApproach & Debuggable> void doTestWithApproach(T approach, TestCase tc) {
 
 		// ===== Run the algorithm =====
 		long actualCount = approach.countTriplets(tc.input.n, tc.input.sum, tc.input.arr);
@@ -39,8 +38,7 @@ class ThreeSumSmallerTest {
 
 	@ParameterizedTest
 	@MethodSource("approachAndTestCases")
-	<T extends SolutionApproach & Debuggable> void testRemoveDuplicates(T approach,
-			TestCase tc) {
+	<T extends SolutionApproach & Debuggable> void testRemoveDuplicates(T approach, TestCase tc) {
 
 		doTestWithApproach(approach, tc);
 	}
@@ -153,7 +151,23 @@ class ThreeSumSmallerTest {
 					List.of(0L, 30L, 40L),
 					List.of(20L, 30L, 40L)
 				))
-			)
+			),
+			new TestCase(
+				new TestCaseInput(9, 100, new long[] { 0L, 20L, 22L, 30L, 60L, 70L, 72L, 90L, 100L }),
+				new TestCaseOutput(11L, List.of(
+					List.of(0L, 20L, 72L),
+					List.of(0L, 20L, 70L),
+					List.of(0L, 20L, 60L),
+					List.of(0L, 20L, 30L),
+					List.of(0L, 20L, 22L),
+					List.of(0L, 22L, 72L),
+					List.of(0L, 22L, 70L),
+					List.of(0L, 22L, 60L),
+					List.of(0L, 22L, 30L),
+					List.of(0L, 30L, 60L),
+					List.of(20L, 22L, 30L)
+				))
+			),
 		};
 		// @formatter:on
 
