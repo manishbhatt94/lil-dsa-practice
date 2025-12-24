@@ -60,7 +60,6 @@ public class GFG_ThreeSumSmaller_Approach implements SolutionApproach, Debuggabl
 		System.out.println("============================================\n");
 	}
 
-	// debug this method addTriplet
 	private void addTriplet(long[] arr, int firstIndex, int secondIndex, int thirdLastIndex) {
 		if (shouldStoreTriplets == false) {
 			return;
