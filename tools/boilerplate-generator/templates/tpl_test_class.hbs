@@ -1,0 +1,145 @@
+package {{fullPackage}};
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+class {{testClass}} {
+
+	<T extends SolutionApproach & Debuggable> void doTestWithApproach(T approach, TestCase tc) {
+
+		// ===== Prepare =====
+		// Do some preparation to run the test
+
+		// ===== Run the algorithm =====
+		{{#with solutionApproach.primaryMethod}}
+		{{callInstanceMethod . instance="approach" varForReturn="actual"}}
+		{{/with}}
+
+		// ===== Collect & print test debug info: =====
+		// Print test case
+		tc.log();
+		// Print actual output
+		{{#with debuggable.primaryMethod}}
+		{{callInstanceMethod . instance="approach"}}
+		{{/with}}
+		System.out.println();
+
+		// ===== Assertions: =====
+
+		// Validate test case correctness:
+		assertThat(5).isEqualTo(5); // Dummy assertion to be replaced below
+
+		// Test expected vs actual output
+		// Dummy assertion to be replaced below
+		assertThat(actual).isEqualTo(5 /* expected value from tc.output */);
+
+	}
+
+	@ParameterizedTest
+	@MethodSource("approachAndTestCases")
+	<T extends SolutionApproach & Debuggable> void testRemoveDuplicates(T approach, TestCase tc) {
+
+		doTestWithApproach(approach, tc);
+	}
+
+	// --- Inner static classes for test data ---
+	{{#with testInputClass}}
+	static class TestCaseInput {
+		{{#each fields}}
+		final {{{type}}} {{name}};
+		{{/each}}
+
+		public TestCaseInput({{{fieldsList}}}) {
+			super();
+			{{#each fields}}
+			this.{{name}} = {{name}};
+			{{/each}}
+		}
+
+		void log() {
+			System.out.println("Logging Test Case Input:");
+			{{#each fields}}
+			System.out.println("Input: {{varArrayNotation .}} = " + {{varToString .}});
+			{{/each}}
+		}
+	}
+	{{/with}}
+
+	{{#with testOutputClass}}
+	static class TestCaseOutput {
+		{{#each fields}}
+		final {{{type}}} {{name}};
+		{{/each}}
+
+		TestCaseOutput({{{fieldsList}}}) {
+			super();
+			{{#each fields}}
+			this.{{name}} = {{name}};
+			{{/each}}
+		}
+
+		void log() {
+			System.out.println("Logging Test Case Expected Output:");
+			{{#each fields}}
+			System.out.println("Expected Output: {{varArrayNotation .}} = " + {{varToString .}});
+			{{else}}
+			System.out.println("Expected Output: No extra output.");
+			{{/each}}
+		}
+	}
+	{{/with}}
+
+	static class TestCase {
+		final TestCaseInput input;
+		final TestCaseOutput output;
+
+		TestCase(TestCaseInput input, TestCaseOutput output) {
+			this.input = input;
+			this.output = output;
+		}
+
+		void log() {
+			input.log();
+			System.out.println("---------------------------------------\n");
+			output.log();
+			System.out.println("---------------------------------------\n");
+		}
+	}
+
+	// --- Provider combining approaches × test cases ---
+
+	private static <T extends SolutionApproach & Debuggable> Stream<Arguments> approachAndTestCases() {
+
+		@SuppressWarnings("unchecked")
+		List<Supplier<T>> approachSuppliers = List.of(
+			{{#each concreteApproaches}}
+			() -> (T) new {{approachClassName}}()
+			{{~#unless @last}},{{~/unless}}
+			{{/each}}
+		);
+
+		// @formatter:off
+		TestCase[] cases = {
+			new TestCase(
+				new TestCaseInput({{{testInputClass.sample}}}),
+				new TestCaseOutput({{{testOutputClass.sample}}})
+			)
+		};
+		// @formatter:on
+
+		// Cartesian product: each approach × each test case
+		return approachSuppliers.stream().flatMap((approachSupplier) -> {
+			return Arrays.stream(cases).map(tc -> Arguments.of(approachSupplier.get(), tc));
+		});
+	}
+
+}

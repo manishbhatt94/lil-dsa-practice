@@ -1,0 +1,17 @@
+package {{fullPackage}};
+
+{{#each solutionApproach.imports}}
+import {{this}};
+{{/each}}
+
+public interface SolutionApproach {
+
+	{{#with solutionApproach.primaryMethod}}
+	{{{fullSignature}}};
+	{{/with}}
+
+	{{#each solutionApproach.otherMethods}}
+	{{{fullSignature}}};
+
+	{{/each}}
+}

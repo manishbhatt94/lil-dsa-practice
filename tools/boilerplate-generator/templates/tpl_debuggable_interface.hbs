@@ -1,0 +1,17 @@
+package {{fullPackage}};
+
+{{#each debuggable.imports}}
+import {{this}};
+{{/each}}
+
+public interface Debuggable {
+
+	{{#with debuggable.primaryMethod}}
+	{{{fullSignature}}};
+	{{/with}}
+
+	{{#each debuggable.otherMethods}}
+	{{{fullSignature}}};
+
+	{{/each}}
+}

@@ -1,0 +1,22 @@
+package {{fullPackage}};
+
+{{#each solutionApproach.imports}}
+import {{this}};
+{{/each}}
+
+public class {{mainClass}} {
+
+	private final SolutionApproach approach;
+
+	public {{mainClass}}(SolutionApproach approach) {
+		super();
+		this.approach = approach;
+	}
+
+	{{#with solutionApproach.primaryMethod}}
+	public {{{fullSignature}}} {
+		{{callInstanceMethod . instance="approach" returnResult=true}}
+	}
+	{{/with}}
+
+}

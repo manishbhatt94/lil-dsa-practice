@@ -1,0 +1,221 @@
+{
+	"title": "ProblemDefinition",
+	"type": "object",
+	"properties": {
+		"subPackage": {
+			"type": "string"
+		},
+		"mainClass": {
+			"type": "string"
+		},
+		"probCodePrefix": {
+			"type": "string"
+		},
+		"solutionApproach": {
+			"type": "object",
+			"properties": {
+				"primaryMethod": {
+					"type": "object",
+					"properties": {
+						"fullSignature": {
+							"type": "string"
+						},
+						"stubReturnValue": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"required": [
+						"fullSignature",
+						"stubReturnValue"
+					]
+				},
+				"otherMethods": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"fullSignature": {
+								"type": "string"
+							},
+							"stubReturnValue": {
+								"type": [
+									"string",
+									"null"
+								]
+							}
+						},
+						"required": [
+							"fullSignature",
+							"stubReturnValue"
+						]
+					}
+				},
+				"imports": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"primaryMethod",
+				"otherMethods",
+				"imports"
+			]
+		},
+		"debuggable": {
+			"type": "object",
+			"properties": {
+				"primaryMethod": {
+					"type": "object",
+					"properties": {
+						"fullSignature": {
+							"type": "string"
+						},
+						"stubReturnValue": {
+							"type": [
+								"string",
+								"null"
+							]
+						}
+					},
+					"required": [
+						"fullSignature",
+						"stubReturnValue"
+					]
+				},
+				"otherMethods": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"fullSignature": {
+								"type": "string"
+							},
+							"stubReturnValue": {
+								"type": [
+									"string",
+									"null"
+								]
+							}
+						},
+						"required": [
+							"fullSignature",
+							"stubReturnValue"
+						]
+					}
+				},
+				"imports": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"primaryMethod",
+				"otherMethods",
+				"imports"
+			]
+		},
+		"concreteApproaches": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"fileNameSuffix": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"fileNameSuffix"
+				]
+			}
+		},
+		"testInputClass": {
+			"type": "object",
+			"properties": {
+				"fieldsList": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"sample": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"fieldsList",
+				"sample"
+			]
+		},
+		"testOutputClass": {
+			"type": "object",
+			"properties": {
+				"fieldsList": {
+					"type": [
+						"string",
+						"null"
+					]
+				},
+				"sample": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"fieldsList",
+				"sample"
+			]
+		},
+		"readmePlatforms": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"platformName": {
+						"type": "string"
+					},
+					"problemCode": {
+						"type": [
+							"string",
+							"null"
+						]
+					},
+					"problemTitle": {
+						"type": "string"
+					},
+					"problemAka": {
+						"type": [
+							"string",
+							"null"
+						]
+					},
+					"problemLink": {
+						"type": "string",
+						"format": "uri"
+					}
+				},
+				"required": [
+					"platformName",
+					"problemTitle",
+					"problemLink"
+				]
+			}
+		}
+	},
+	"required": [
+		"subPackage",
+		"mainClass",
+		"probCodePrefix",
+		"solutionApproach",
+		"debuggable",
+		"concreteApproaches",
+		"testInputClass",
+		"testOutputClass",
+		"readmePlatforms"
+	]
+}

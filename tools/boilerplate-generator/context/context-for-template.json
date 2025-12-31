@@ -1,0 +1,61 @@
+{
+	"subPackage": "bst.traversals",
+	"mainClass": "LevelOrderTraversal",
+	"probCodePrefix": "LC4219",
+	"solutionApproach": {
+		"primaryMethod": {
+			"fullSignature": "long countTriplets(int n, int sum, long[] arr)",
+			"stubReturnValue": "0L"
+		},
+		"otherMethods": [],
+		"imports": []
+	},
+	"debuggable": {
+		"primaryMethod": {
+			"fullSignature": "void logActualOutput(int[] updatedNums)",
+			"stubReturnValue": null
+		},
+		"otherMethods": [
+			{
+				"fullSignature": "List<List<Long>> getTriplets()",
+				"stubReturnValue": "new ArrayList<>()"
+			}
+		],
+		"imports": [
+			"java.util.ArrayList",
+			"java.util.List"
+		]
+	},
+	"concreteApproaches": [
+		{
+			"fileNameSuffix": "Approach_AdHoc"
+		},
+		{
+			"fileNameSuffix": "Approach_Optimal_Deque"
+		}
+	],
+	"testInputClass": {
+		"fieldsList": "int n, int sum, long[] arr",
+		"sample": "4, 2, new long[] { 1L, 0L, 3L, -2L }"
+	},
+	"testOutputClass": {
+		"fieldsList": "long expectedCount, List<List<Long>> expectedTriplets",
+		"sample": "2L, List.of(List.of(-2L, 0L, 3L), List.of(-2L, 0L, 1L))"
+	},
+	"readmePlatforms": [
+		{
+			"platformName": "LeetCode",
+			"problemCode": "15",
+			"problemTitle": "3Sum",
+			"problemAka": "Three Sum To Zero",
+			"problemLink": "https://leetcode.com/problems/3sum/description/"
+		},
+		{
+			"platformName": "GeeksforGeeks",
+			"problemCode": null,
+			"problemTitle": "Count triplets with sum equal to zero",
+			"problemAka": null,
+			"problemLink": "https://practice.geeksforgeeks.org/problems/count-triplets-with-sum-equal-to-zero/1"
+		}
+	]
+}

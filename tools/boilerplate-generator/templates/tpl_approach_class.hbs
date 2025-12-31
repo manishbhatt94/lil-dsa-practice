@@ -1,0 +1,66 @@
+package {{fullPackage}};
+
+{{#each solutionApproach.imports}}
+import {{this}};
+{{/each}}
+{{#each debuggable.imports}}
+import {{this}};
+{{/each}}
+
+public class {{approachClass}} implements SolutionApproach, Debuggable {
+
+	// Implementations of SolutionApproach interface's methods:
+
+	{{#with solutionApproach.primaryMethod}}
+	@Override
+	public {{{fullSignature}}} {
+
+		// TODO: Implement approach
+		{{#if stubReturnValue}}
+		return {{{stubReturnValue}}};
+		{{else}}
+		// Returns no value.
+		{{/if}}
+	}
+	{{/with}}
+
+	{{#each solutionApproach.otherMethods}}
+	@Override
+	public {{{fullSignature}}} {
+
+		// TODO: Implement method
+		{{#if stubReturnValue}}
+		return {{{stubReturnValue}}};
+		{{else}}
+		// Returns no value.
+		{{/if}}
+	}
+	{{/each}}
+
+	// Implementations of Debuggable interface's methods:
+
+	{{#with debuggable.primaryMethod}}
+	@Override
+	public {{{fullSignature}}} {
+		System.out.println("Logging Actual Output:");
+		{{#each params}}
+		System.out.println("Actual Output: {{varArrayNotation .}} = " + {{varToString .}});
+		{{/each}}
+		System.out.println("============================================\n");
+	}
+	{{/with}}
+
+	{{#each debuggable.otherMethods}}
+	@Override
+	public {{{fullSignature}}} {
+
+		// TODO: Implement method
+		{{#if stubReturnValue}}
+		return {{{stubReturnValue}}};
+		{{else}}
+		// Returns no value.
+		{{/if}}
+	}
+	{{/each}}
+
+}
